@@ -30,7 +30,7 @@ void main() {
       var from = 12;
       var to = 17;
 
-      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to, titleSize: 1);
+      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to);
 
       expect(formattedText.cursorIndex, 7, reason: "dolor length = 5, '# '= 2");
       expect(formattedText.data, 'Lorem ipsum # dolor sit amet, consectetur adipiscing elit.');
@@ -41,7 +41,7 @@ void main() {
       var from = 12;
       var to = 17;
 
-      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to, titleSize: 2);
+      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to);
 
       expect(formattedText.cursorIndex, 8, reason: "dolor length = 5, '## '= 3");
       expect(formattedText.data, 'Lorem ipsum ## dolor sit amet, consectetur adipiscing elit.');
@@ -52,7 +52,7 @@ void main() {
       var from = 12;
       var to = 17;
 
-      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to, titleSize: 3);
+      var formattedText = FormatMarkdown.convertToMarkdown(MarkdownType.title, testString, from, to);
 
       expect(formattedText.cursorIndex, 9, reason: "dolor length = 5, '### '= 4");
       expect(formattedText.data, 'Lorem ipsum ### dolor sit amet, consectetur adipiscing elit.');

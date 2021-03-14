@@ -4,6 +4,8 @@ version: 1.0.2
 homepage: https://github.com/playmoweb/markdown-editable-textinput
 repository: https://github.com/playmoweb/markdown-editable-textinput
 
+publish_to: none
+
 environment:
   sdk: ">=2.2.2 <3.0.0"
 

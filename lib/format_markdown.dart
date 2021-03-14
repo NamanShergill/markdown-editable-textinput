@@ -2,9 +2,12 @@
 class FormatMarkdown {
   /// Convert [data] part into [ResultMarkdown] from [type].
   /// Use [fromIndex] and [toIndex] for converting part of [data]
-  /// [titleSize] is used for markdown titles
-  static ResultMarkdown convertToMarkdown(MarkdownType type, String data, int fromIndex, int toIndex,
-      {int titleSize = 1}) {
+  static ResultMarkdown convertToMarkdown(
+    MarkdownType type,
+    String data,
+    int fromIndex,
+    int toIndex,
+  ) {
     String changedData;
     int replaceCursorIndex;
 
@@ -18,11 +21,12 @@ class FormatMarkdown {
         replaceCursorIndex = 1;
         break;
       case MarkdownType.link:
-        changedData = '[${data.substring(fromIndex, toIndex)}](${data.substring(fromIndex, toIndex)})';
+        changedData =
+            '[${data.substring(fromIndex, toIndex)}](${data.substring(fromIndex, toIndex)})';
         replaceCursorIndex = 3;
         break;
       case MarkdownType.title:
-        changedData = "${"#" * titleSize} ${data.substring(fromIndex, toIndex)}";
+        changedData = "${"#" * 3} ${data.substring(fromIndex, toIndex)}";
         replaceCursorIndex = 0;
         break;
       case MarkdownType.list:
@@ -34,12 +38,28 @@ class FormatMarkdown {
         }).join();
         replaceCursorIndex = 0;
         break;
+      case MarkdownType.code:
+        changedData = '`${data.substring(fromIndex, toIndex)}`';
+        replaceCursorIndex = 1;
+        break;
+      case MarkdownType.quote:
+        changedData = "${">"} ${data.substring(fromIndex, toIndex)}";
+        replaceCursorIndex = 0;
+        break;
+      case MarkdownType.taskList:
+        changedData = "${"- [ ] "} ${data.substring(fromIndex, toIndex)}";
+        replaceCursorIndex = 0;
+        break;
     }
 
     final cursorIndex = changedData.length;
 
-    return ResultMarkdown(data.substring(0, fromIndex) + changedData + data.substring(toIndex, data.length),
-        cursorIndex, replaceCursorIndex);
+    return ResultMarkdown(
+        data.substring(0, fromIndex) +
+            changedData +
+            data.substring(toIndex, data.length),
+        cursorIndex,
+        replaceCursorIndex);
   }
 }
 
@@ -70,12 +90,21 @@ enum MarkdownType {
   /// For [link](https://flutter.dev)
   link,
 
-  /// For # Title or ## Title or ### Title
+  /// For ### Title
   title,
 
   /// For :
   ///   * Item 1
   ///   * Item 2
   ///   * Item 3
-  list
+  list,
+
+  /// For > quote
+  quote,
+
+  /// For `back-ticks`
+  code,
+
+  /// Add a task list - [ ]
+  taskList,
 }
