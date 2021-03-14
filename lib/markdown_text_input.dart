@@ -31,8 +31,9 @@ class MarkdownTextInput extends StatefulWidget {
   final BorderRadius inkwellBorderRadius;
 
   /// Constructor for [MarkdownTextInput]
-  MarkdownTextInput(this.initialValue,
-      {this.label = '',
+  MarkdownTextInput(
+      {this.initialValue,
+      this.label = '',
       this.validators,
       this.onTextChanged,
       this.boxDecoration,
