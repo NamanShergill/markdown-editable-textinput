@@ -24,11 +24,19 @@ class MarkdownTextInput extends StatefulWidget {
   /// Text Box decoration.
   final BoxDecoration boxDecoration;
 
+  /// Toolbar decoration.
+  final BoxDecoration toolbarDecoration;
+
+  /// Inkwell border radius.
+  final BorderRadius inkwellBorderRadius;
+
   /// Constructor for [MarkdownTextInput]
   MarkdownTextInput(this.onTextChanged, this.initialValue,
       {this.label = '',
       this.validators,
       this.boxDecoration,
+      this.inkwellBorderRadius,
+      this.toolbarDecoration,
       this.textDirection = TextDirection.ltr,
       this.maxLines = 10});
 
@@ -112,97 +120,105 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
                   const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             ),
           ),
-          Material(
-            color: Theme.of(context).cardColor,
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10)),
-            child: Row(
-              children: [
-                InkWell(
-                  key: Key('H_button'),
-                  onTap: () => onTap(MarkdownType.title),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'H',
-                      style: TextStyle(
-                          fontSize: (18).toDouble(),
-                          fontWeight: FontWeight.w700),
+          Container(
+            decoration: widget.toolbarDecoration,
+            child: Material(
+              color: Colors.transparent,
+              child: Row(
+                children: [
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: Key('H_button'),
+                    onTap: () => onTap(MarkdownType.title),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'H',
+                        style: TextStyle(
+                            fontSize: (18).toDouble(),
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('bold_button'),
-                  onTap: () => onTap(MarkdownType.bold),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.format_bold,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('bold_button'),
+                    onTap: () => onTap(MarkdownType.bold),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.format_bold,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('italic_button'),
-                  onTap: () => onTap(MarkdownType.italic),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.format_italic,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('italic_button'),
+                    onTap: () => onTap(MarkdownType.italic),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.format_italic,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('code_button'),
-                  onTap: () => onTap(MarkdownType.code),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.code,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('code_button'),
+                    onTap: () => onTap(MarkdownType.code),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.code,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('quote_button'),
-                  onTap: () => onTap(MarkdownType.quote),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.format_quote,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('quote_button'),
+                    onTap: () => onTap(MarkdownType.quote),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.format_quote,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('link_button'),
-                  onTap: () => onTap(MarkdownType.link),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.link,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('link_button'),
+                    onTap: () => onTap(MarkdownType.link),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.link,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('list_button'),
-                  onTap: () => onTap(MarkdownType.list),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.list,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('list_button'),
+                    onTap: () => onTap(MarkdownType.list),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.list,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  key: const Key('task_button'),
-                  onTap: () => onTap(MarkdownType.taskList),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.check_box_outlined,
+                  InkWell(
+                    borderRadius: widget.inkwellBorderRadius,
+                    key: const Key('task_button'),
+                    onTap: () => onTap(MarkdownType.taskList),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.check_box_outlined,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         ],
