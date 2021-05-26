@@ -11,7 +11,7 @@ class MarkdownTextInput extends StatefulWidget {
   final String? initialValue;
 
   /// Validator for the TextFormField
-  final String Function(String? value)? validators;
+  final FormFieldValidator<String>? validator;
 
   /// String displayed at hintText in TextFormField
   final String label;
@@ -35,7 +35,7 @@ class MarkdownTextInput extends StatefulWidget {
   MarkdownTextInput(
       {this.initialValue,
       this.label = '',
-      this.validators,
+      this.validator,
       this.onTextChanged,
       this.boxDecoration,
       this.inkwellBorderRadius,
@@ -109,7 +109,7 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
               maxLines: widget.maxLines,
               controller: _controller,
               textCapitalization: TextCapitalization.sentences,
-              validator: (value) => widget.validators!(value),
+              validator: widget.validator,
               cursorColor: Theme.of(context).primaryColor,
               textDirection: widget.textDirection ?? TextDirection.ltr,
               decoration: InputDecoration(
