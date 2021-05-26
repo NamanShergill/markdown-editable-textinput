@@ -12,7 +12,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String description = 'My great package';
-
+  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,31 +30,35 @@ class _MyAppState extends State<MyApp> {
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 100),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        MarkdownTextInput(
-                          (String value) => setState(() => description = value),
-                          description,
-                          label: 'Description',
-                          maxLines: 2,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: MarkdownBody(
-                            data: description,
-                            shrinkWrap: true,
+              child: Builder(
+                builder: (context) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 100),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Expanded(
+                            child: MarkdownTextInput(
+                              initialValue: 'szfsD  afef',
+                              label: 'Description',
+                              maxLines: 99,
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: MarkdownBody(
+                              data: description,
+                              shrinkWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                ],
+                  );
+                },
               ),
             ),
           ),

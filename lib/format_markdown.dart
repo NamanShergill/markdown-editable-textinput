@@ -8,8 +8,8 @@ class FormatMarkdown {
     int fromIndex,
     int toIndex,
   ) {
-    String changedData;
-    int replaceCursorIndex;
+    late String changedData;
+    int? replaceCursorIndex;
 
     switch (type) {
       case MarkdownType.bold:
@@ -50,6 +50,14 @@ class FormatMarkdown {
         changedData = "${"- [ ] "} ${data.substring(fromIndex, toIndex)}";
         replaceCursorIndex = 0;
         break;
+      case MarkdownType.strike_through:
+        changedData = '~~${data.substring(fromIndex, toIndex)}~~';
+        replaceCursorIndex = 2;
+        break;
+      case MarkdownType.code_block:
+        changedData = '\n```\n${data.substring(fromIndex, toIndex)}\n```\n';
+        replaceCursorIndex = 5;
+        break;
     }
 
     final cursorIndex = changedData.length;
@@ -72,7 +80,7 @@ class ResultMarkdown {
   int cursorIndex;
 
   /// index at which cursor need to be replaced if no text selected
-  int replaceCursorIndex;
+  int? replaceCursorIndex;
 
   /// Return [ResultMarkdown]
   ResultMarkdown(this.data, this.cursorIndex, this.replaceCursorIndex);
@@ -107,4 +115,8 @@ enum MarkdownType {
 
   /// Add a task list - [ ]
   taskList,
+
+  strike_through,
+
+  code_block,
 }
