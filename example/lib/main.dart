@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: const Color(0xFF2C1C6B),
           accentColor: const Color(0xFF200681),
           cardColor: const Color(0xFFF8F9FC),
-          textTheme: const TextTheme(bodyText2: TextStyle(fontSize: 20)),
+          textTheme: const TextTheme(bodyMedium: TextStyle(fontSize: 20)),
         ),
         child: Scaffold(
           appBar: AppBar(

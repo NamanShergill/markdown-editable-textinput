@@ -136,8 +136,12 @@ class _MarkdownTextInputState extends State<MarkdownTextInput> {
           ),
           Container(
             decoration: widget.toolbarDecoration?.copyWith(
-                border: Border(
-                    top: BorderSide(color: Theme.of(context).accentColor))),
+              border: Border(
+                top: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ),
             width: double.infinity,
             child: Center(
               child: Material(
